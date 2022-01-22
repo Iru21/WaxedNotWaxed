@@ -10,3 +10,7 @@ Adds a simple indicator to know if a copper block is waxed or not!
 ## Toggling
 
 The indicator can be toggled with the `z` key
+
+## Requirements
+
+[Fabric Language Kotlin >=1.7.1+kotlin.1.6.10](https://modrinth.com/mod/fabric-language-kotlin)
