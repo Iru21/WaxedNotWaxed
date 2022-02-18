@@ -5,24 +5,23 @@ import me.iru.waxednotwaxed.WaxedNotWaxed
 import me.iru.waxednotwaxed.getBlockAtCrosshair
 import me.iru.waxednotwaxed.getCrosshairLocation
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback
+import net.minecraft.block.OxidizableBlock
+import net.minecraft.block.OxidizableSlabBlock
+import net.minecraft.block.OxidizableStairsBlock
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawableHelper
 import net.minecraft.client.render.GameRenderer
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.Identifier
-import net.minecraft.util.math.Vec3f
-import net.minecraft.util.math.Vec3i
-import java.awt.Color
 
-class HudRenderHandler() : HudRenderCallback {
+class HudRenderHandler : HudRenderCallback {
     override fun onHudRender(matrixStack: MatrixStack?, tickDelta: Float) {
         if(matrixStack == null || !WaxedNotWaxed.toggledCached) return
         val lookingAt = getBlockAtCrosshair()
         if (lookingAt == null) return
-        val blockName = lookingAt.name.toString().lowercase()
-        if(blockName.contains("copper")) {
-            if (blockName.contains("waxed")) render(matrixStack, true)
-            else render(matrixStack, false)
+        if (lookingAt.name.toString().lowercase().contains("waxed")) render(matrixStack, true)
+        else if(lookingAt is OxidizableBlock || lookingAt is OxidizableSlabBlock || lookingAt is OxidizableStairsBlock) {
+              render(matrixStack, false)
         }
     }
 
@@ -36,9 +35,9 @@ class HudRenderHandler() : HudRenderCallback {
             screenCenter.y + 6,
             if(waxed) 0xf78204 else 0x09a073
         )
-        RenderSystem.enableBlend();
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, Identifier("minecraft", if(waxed) "textures/item/honeycomb.png" else "textures/item/iron_axe.png"));
+        RenderSystem.enableBlend()
+        RenderSystem.setShader(GameRenderer::getPositionTexShader)
+        RenderSystem.setShaderTexture(0, Identifier("minecraft", if(waxed) "textures/item/honeycomb.png" else "textures/item/iron_axe.png"))
         DrawableHelper.drawTexture(
             matrixStack,
             screenCenter.x.toInt() + 5,

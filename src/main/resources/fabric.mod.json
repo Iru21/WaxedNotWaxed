@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "waxednotwaxed",
-  "version": "1.0c",
+  "version": "1.0d",
   "name": "Waxed Not Waxed",
   "description": "Adds a simple indicator to know if a copper block is waxed or not!",
   "authors": [
