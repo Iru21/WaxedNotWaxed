@@ -16,7 +16,7 @@ val modVersion: String by project
 version = modVersion
 val mavenGroup: String by project
 group = mavenGroup
-minecraft {}
+
 repositories {
     mavenCentral()
     maven("https://maven.shedaniel.me/")
@@ -47,7 +47,7 @@ tasks {
         targetCompatibility = javaVersion.toString()
         options.release.set(javaVersion.toString().toInt())
     }
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    withType<KotlinCompile> {
         kotlinOptions { jvmTarget = javaVersion.toString() }
         sourceCompatibility = javaVersion.toString()
         targetCompatibility = javaVersion.toString()

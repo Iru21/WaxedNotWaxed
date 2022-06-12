@@ -17,7 +17,7 @@ import org.lwjgl.glfw.GLFW
 
 object WaxedNotWaxed : ModInitializer {
     private const val modName = "Waxed Not Waxed"
-    private const val version = "1.0d"
+    private const val version = "1.1a"
 
     var keyBinding: KeyBinding? = null
     var config: ConfigHolder<ToggleConfig>? = null
