@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "waxednotwaxed",
-  "version": "1.0d",
+  "version": "${version}",
   "name": "Waxed Not Waxed",
   "description": "Adds a simple indicator to know if a copper block is waxed or not!",
   "authors": [
@@ -16,7 +16,7 @@
   "icon": "assets/waxednotwaxed/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
+    "client": [
       {
         "adapter": "kotlin",
         "value": "me.iru.waxednotwaxed.WaxedNotWaxed"

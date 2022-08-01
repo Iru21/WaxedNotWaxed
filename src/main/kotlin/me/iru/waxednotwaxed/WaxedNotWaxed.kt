@@ -6,7 +6,7 @@ import me.shedaniel.autoconfig.AutoConfig
 import me.shedaniel.autoconfig.ConfigHolder
 import me.shedaniel.autoconfig.annotation.Config
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer
-import net.fabricmc.api.ModInitializer
+import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback
@@ -15,16 +15,13 @@ import net.minecraft.client.util.InputUtil
 import org.lwjgl.glfw.GLFW
 
 
-object WaxedNotWaxed : ModInitializer {
-    private const val modName = "Waxed Not Waxed"
-    private const val version = "1.1a"
+object WaxedNotWaxed : ClientModInitializer {
 
     var keyBinding: KeyBinding? = null
     var config: ConfigHolder<ToggleConfig>? = null
     var toggledCached: Boolean = false
 
-    override fun onInitialize() {
-        println("[$modName] Enabling $version")
+    override fun onInitializeClient() {
         AutoConfig.register(
             ToggleConfig::class.java
         ) { definition: Config?, configClass: Class<ToggleConfig?>? ->
