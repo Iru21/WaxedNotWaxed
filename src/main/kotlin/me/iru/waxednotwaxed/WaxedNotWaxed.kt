@@ -1,9 +1,9 @@
 package me.iru.waxednotwaxed
 
+import me.iru.waxednotwaxed.config.WaxedNotWaxedConfig
 import me.iru.waxednotwaxed.events.EndClientTickHandler
 import me.iru.waxednotwaxed.events.HudRenderHandler
 import me.shedaniel.autoconfig.AutoConfig
-import me.shedaniel.autoconfig.ConfigHolder
 import me.shedaniel.autoconfig.annotation.Config
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer
 import net.fabricmc.api.ClientModInitializer
@@ -14,24 +14,21 @@ import net.minecraft.client.option.KeyBinding
 import net.minecraft.client.util.InputUtil
 import org.lwjgl.glfw.GLFW
 
-
 object WaxedNotWaxed : ClientModInitializer {
 
     var keyBinding: KeyBinding? = null
-    var config: ConfigHolder<ToggleConfig>? = null
-    var toggledCached: Boolean = false
+    lateinit var config: WaxedNotWaxedConfig
 
     override fun onInitializeClient() {
         AutoConfig.register(
-            ToggleConfig::class.java
-        ) { definition: Config?, configClass: Class<ToggleConfig?>? ->
+            WaxedNotWaxedConfig::class.java
+        ) { definition: Config?, configClass: Class<WaxedNotWaxedConfig?>? ->
             JanksonConfigSerializer(
                 definition,
                 configClass
             )
         }
-        this.config = AutoConfig.getConfigHolder(ToggleConfig::class.java)
-        this.toggledCached = this.config!!.get().toggled
+        this.config = AutoConfig.getConfigHolder(WaxedNotWaxedConfig::class.java).get()
 
         this.keyBinding = KeyBindingHelper.registerKeyBinding(
             KeyBinding(

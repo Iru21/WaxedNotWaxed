@@ -8,12 +8,16 @@ import net.minecraft.block.OxidizableSlabBlock
 import net.minecraft.block.OxidizableStairsBlock
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
+import net.minecraft.item.AxeItem
 import net.minecraft.util.Identifier
 
 class HudRenderHandler : HudRenderCallback {
 
     override fun onHudRender(drawContext: DrawContext?, tickDelta: Float) {
-        if(drawContext == null || !WaxedNotWaxed.toggledCached) return
+        if(drawContext == null ||
+            !WaxedNotWaxed.config.enabled ||
+            (WaxedNotWaxed.config.onlyShowWhenHoldingAxe && MinecraftClient.getInstance().player!!.mainHandStack.item !is AxeItem)
+        ) return
         val lookingAt = Utils.getBlockAtCrosshair() ?: return
         if (lookingAt.name.toString().lowercase().contains("waxed")) render(drawContext, true)
         else if(lookingAt is OxidizableBlock || lookingAt is OxidizableSlabBlock || lookingAt is OxidizableStairsBlock) {

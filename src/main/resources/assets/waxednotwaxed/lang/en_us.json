@@ -1,4 +1,7 @@
 {
+  "text.autoconfig.waxednotwaxed.title": "Waxed Not Waxed Config",
+  "text.autoconfig.waxednotwaxed.option.enabled": "Enabled",
+  "text.autoconfig.waxednotwaxed.option.onlyShowWhenHoldingAxe": "Only show when holding an axe",
   "key.waxednotwaxed.toggle": "Toggle Indicator",
   "category.waxednotwaxed.keybindcategory": "Waxed Not Waxed"
 }

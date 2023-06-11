@@ -21,6 +21,9 @@
         "adapter": "kotlin",
         "value": "me.iru.waxednotwaxed.WaxedNotWaxed"
       }
+    ],
+    "modmenu": [
+      "me.iru.waxednotwaxed.config.ModMenuIntegration"
     ]
   },
   "depends": {
@@ -29,5 +32,12 @@
     "fabric-language-kotlin": ">=1.8.7+kotlin.1.7.22",
     "minecraft": ">=1.20",
     "java": ">=17"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/jrebrmDD5X"
+      }
+    }
   }
 }

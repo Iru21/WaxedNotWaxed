@@ -9,10 +9,9 @@ import net.minecraft.sound.SoundEvents
 fun EndClientTickHandler(): ClientTickEvents.EndTick {
     return ClientTickEvents.EndTick {
         while(WaxedNotWaxed.keyBinding!!.wasPressed()) {
-            val newValue = !WaxedNotWaxed.toggledCached
-            WaxedNotWaxed.toggledCached = newValue
-            WaxedNotWaxed.config!!.config.toggled = newValue
-            WaxedNotWaxed.config!!.save()
+            val newValue = !WaxedNotWaxed.config.enabled
+            WaxedNotWaxed.config.enabled = newValue
+            WaxedNotWaxed.config.save()
             val mc = MinecraftClient.getInstance()
             val p = mc.player!!
             mc.world!!.playSound(p, p.blockPos, SoundEvents.UI_BUTTON_CLICK.value(), SoundCategory.MASTER, 0.1f, 1f)
